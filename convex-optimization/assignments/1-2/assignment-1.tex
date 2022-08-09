@@ -1,0 +1,322 @@
+
+
+\documentclass{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts, fancyhdr, color, comment, graphicx, environ}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\renewcommand{\footrulewidth}{0.8pt}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+
+\pagestyle{fancy}
+
+
+
+\newenvironment{problem}[2][Problem]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+
+\newenvironment{solution}{\textbf{Solution}}
+
+
+\lhead{MIT2021117}
+\rhead{} 
+\chead{\textbf{Assignment 1}}
+\lfoot{}
+\rfoot{}
+
+
+\begin{document}
+    \begin{problem}{1}
+        What is dual norm. Derive the dual norm of the $L_{1}$, $L_{2}$ and $L_{\infty}$.
+    \end{problem}
+    
+    \begin{solution}
+        Let $\Vert w \Vert$  be  a  generic  norm  of  vector w.
+        
+        \hfill
+        
+        The dual norm is defined as follows.
+        
+        \hfill
+        
+        $\Vert x \Vert$  $\star = max\langle$ w, x  $\rangle$ such that  $\Vert$ w  $\Vert$  $\leq$ 1.
+        
+        \hfill
+        
+        Hence, we get the following result.
+        
+        \hfill
+        
+        $\langle w, z  \rangle  \leq  \Vert w  \Vert   \Vert z  \Vert$  $\star$
+        
+        \hfill
+        
+        \textbf{Dual norm of $L_{1}$ and $L_{\infty}$}
+        
+        \hfill
+ 
+ 
+ 
+
+    
+        Let $||z|| = \Sigma |z_{i}| = ||Z||_{1} (l_{1} norm)$.
+        
+        \hfill
+        
+        maximize $\Sigma z_{i}y_{i}$ for $\Sigma |z_{i}| \leq 1$.
+        
+        \hfill
+        
+        $= max |y_{i}| = ||y||_{\infty}$.
+        
+        \hfill
+        
+        Hence, the dual norm of $L_{1}$ is $L_{\infty}$. Since we know that the dual norm of the dual norm of is the original norm. Hence, the dual norm of $L_{\infty}$ is $L_{1}$.
+        
+        \hfill
+        
+        \textbf{Dual norm of $L_{2}$}
+        
+        We can see from the below equation that dual norm of $L_{2}$ is the $L_{2}$ itself.  
+        
+        \begin{equation}
+            \begin{aligned}
+            \max_{||z||_{2} \leq 1} \quad & 
+            z^{T}y \leq ||z||_{2} ||y||_{2} \leq ||y||_{2}\\
+            \end{aligned}
+        \end{equation}
+        
+        \hfill
+        
+        The equality is obtained when,
+        
+        \[ z = 
+            \begin{cases} 
+                ||y||_{2}^{-1}.y , & y \neq 0 \\
+                0, & y = 0 \\
+            \end{cases}
+        \]
+        
+    \end{solution}
+    
+    \newpage
+    
+    \begin{problem}{2}
+        Gram-Schmidt Let $(1,-1,1,1), (1,0,1,0), (0,1,0,1)$ be a linearly independent set in $R^4$. Find an orthonormal set $v1, v2, v3$ st L( (1, −1,1,1), (1,0,1,0), (0,1,0,1)) = L(v1, v2, v3 )
+    \end{problem}
+    
+    \begin{solution}
+        step-1 \\
+   $\mathbf{\vec{u_{1}}} = \mathbf{\vec{v_{1}}} = \left[\begin{array}{c}1\\-1\\1\\1\end{array}\right]$
+   $\mathbf{\vec{e_{1}}} = \frac{\mathbf{\vec{u_{1}}}}{\mathbf{\left\lvert\vec{u_{1}}\right\rvert}} = \left[\begin{array}{c}\frac{1}{2}\\- \frac{1}{2}\\\frac{1}{2}\\\frac{1}{2}\end{array}\right]$  \\
+   step-2 \\
+   $\mathbf{\vec{u_{2}}} = \mathbf{\vec{v_{2}}} - \text{proj}_{\mathbf{\vec{u_{1}}}}\left(\mathbf{\vec{v_{2}}}\right) = \left[\begin{array}{c}\frac{1}{2}\\\frac{1}{2}\\\frac{1}{2}\\- \frac{1}{2}\end{array}\right]$
+   $\mathbf{\vec{e_{2}}} = \frac{\mathbf{\vec{u_{2}}}}{\mathbf{\left\lvert\vec{u_{2}}\right\rvert}} = \left[\begin{array}{c}\frac{1}{2}\\\frac{1}{2}\\\frac{1}{2}\\- \frac{1}{2}\end{array}\right]$ \\
+   step-3 \\
+   $\mathbf{\vec{u_{3}}} = \mathbf{\vec{v_{3}}} - \text{proj}_{\mathbf{\vec{u_{1}}}}\left(\mathbf{\vec{v_{3}}}\right) - \text{proj}_{\mathbf{\vec{u_{2}}}}\left(\mathbf{\vec{v_{3}}}\right) = \left[\begin{array}{c}0\\1\\0\\1\end{array}\right]$ 
+   $\mathbf{\vec{e_{3}}} = \frac{\mathbf{\vec{u_{3}}}}{\mathbf{\left\lvert\vec{u_{3}}\right\rvert}} = \left[\begin{array}{c}0\\\frac{\sqrt{2}}{2}\\0\\\frac{\sqrt{2}}{2}\end{array}\right]$ \\
+   answer: \\
+   $\left\{\left[\begin{array}{c}\frac{1}{2}\\- \frac{1}{2}\\\frac{1}{2}\\\frac{1}{2}\end{array}\right], \left[\begin{array}{c}\frac{1}{2}\\\frac{1}{2}\\\frac{1}{2}\\- \frac{1}{2}\end{array}\right], \left[\begin{array}{c}0\\\frac{\sqrt{2}}{2}\\0\\\frac{\sqrt{2}}{2}\end{array}\right]\right\}\approx \left\{\left[\begin{array}{c}0.5\\-0.5\\0.5\\0.5\end{array}\right], \left[\begin{array}{c}0.5\\0.5\\0.5\\-0.5\end{array}\right], \left[\begin{array}{c}0\\0.707106781186548\\0\\0.707106781186548\end{array}\right]\right\}.$
+    \end{solution}
+    
+    \newpage
+    
+
+    \begin{problem}{3}
+    Prove that every real, symmetric matrix $X$ has the decomposition $X = Q \Lambda Q^{T}$. $Q$ is an orthogonal matrix and $\Lambda$ is a diagonal matrix with eigenvalues as elements.
+    \end{problem}
+    
+    \begin{solution}
+    
+    Let $n$ be the order of real symmetric matrix $A$.
+    
+    % \hfill
+    
+    And $x_{1}, x_{2}, \hdots, x_{n}$ be the eigenvector of A with corresponding eigenvalues $\lambda_{1}, \lambda_{2}, \hdots, \lambda_{n}$.
+    
+    \hfill
+    
+    Let $\Lambda = 
+    \begin{bmatrix}
+        \lambda_{1} & 0 & 0 & \dots & 0 \\
+        0 & \lambda_{2} & 0 & \dots & 0 \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & 0 & \dots & \lambda_{n} \\
+    \end{bmatrix}
+    $ be the eigenvalue matrix of A. And $Q = [x_{1}, x_{2}, ..., x_{n}]$ be the eigenvector matrix of A.
+    
+    \hfill
+    
+    Then, we have,
+    
+    \hfill
+    
+    \[
+        AQ = A[x_{1}, x_{2}, ..., x_{n}]
+    \]
+    
+    \[
+        = [Ax_{1}, Ax_{2}, ..., Ax_{n}]
+    \]
+    
+    \[
+        = [\lambda_{1}x_{1}, \lambda_{2}x_{2}, ..., \lambda_{n}x_{n}]
+    \]
+    
+    \[
+        = Q\Lambda
+    \]
+    
+    Hence, $AQ = Q\Lambda$.
+    
+    \hfill
+    
+    Or, $A = Q \Lambda Q^{-1}$
+    
+    If we can prove that $Q$ is orthogonal then we would get our desired result of $A = Q \Lambda Q^{T}$ as for any orthogonal matrix, $Q^{-1} = Q^{T}$
+    
+    \hfill
+    
+    We know that for any real matrix A and any vectors x and y, we have,
+    
+    \[
+        \langle Ax, y \rangle = \langle x, A^{T}y \rangle
+    \]
+    
+    Let $x$, $y$ be the eigenvector of $A$ corresponding to distinct eigenvalue $\lambda_{1}$ and $\lambda_{2}$. We already know that $A$ is a real, symmetric matrix. Then,
+    
+    \[
+        \lambda_{1}\langle x, y \rangle
+        = \langle \lambda_{1}x, y \rangle
+        = \langle Ax, y \rangle
+        = \langle x, A^{T}y \rangle
+        = \langle x, Ay \rangle
+        = \langle x, \lambda_{2}y \rangle
+        = \lambda_{2}\langle x, y \rangle
+    \]
+    
+    \hfill
+    
+    Therefore, $(\lambda_{1} - \lambda_{2}) \langle x, y \rangle = 0$. Since $(\lambda_{1} - \lambda_{2}) \neq 0$ as they are distinct eigenvalues. Therefore, $x$ and $y$ are orthogonal to each other.
+    
+    \hfill
+    
+    Similarly, we can prove that any two eigenvector of $A$ are orthogonal to each other. Hence, the matrix $Q$ is orthogonal.
+    
+    \hfill
+    
+    Hence, $A = Q \Lambda Q^{T}$
+    
+    \end{solution}
+    
+    \newpage
+    
+    \begin{problem}{4}
+        Can an orthogonal matrix have an entry $U_{ij} > 1 $? Why?
+    \end{problem}
+    
+    \begin{solution}
+        Yes. Since, all diagonal matrix are orthogonal and a diagonal matrix can have a diagonal element greater than 1. Hence, it is possible for an orthogonal matrix to have an element greater than 1.
+    \end{solution}
+    
+    % \newpage
+    
+    \begin{problem}{5}
+        When is a diagonal matrix orthogonal?
+    \end{problem}
+    
+    \begin{solution}
+        Every diagonal matrix has the property that it is orthogonal. Hence, every diagonal matrix is already orthogonal.
+    \end{solution}
+    
+    % \newpage
+    
+    
+    \begin{problem}{6}
+        When is an upper triangular matrix orthogonal ?
+    \end{problem}
+    
+    \begin{solution}
+        Let $A$ be an upper triangular matrix which is also orthogonal. Then, as per orthogonality, $A^{-1} = A^{T}$.
+        
+        \hfill
+        
+        Also, note that the inverse of an upper triangular matrix is also an upper triangular matrix. Hence, $A^{T}$ is both upper triangular and lower triangular matrix, i.e., a diagonal matrix. It implies that $A$ is also a diagonal matrix.
+        
+        \hfill
+        
+        Hence, an upper triangular matrix will be orthogonal when it is diagonal.
+    \end{solution}
+    
+    % \newpage
+    
+    \begin{problem}{7}
+        Is the inverse of an orthogonal matrix orthogonal ?
+    \end{problem}
+    
+    \begin{solution}
+        We know that, $A^T = A^{-1}$ 
+        
+        \hfill
+        
+        Taking inverse, $(A^{-1})^{-1} = A$
+        
+        \hfill
+        
+        Taking transpose, $(A^T)^T = A$
+        
+        \hfill
+        
+        Hence, $(A^{-1})^{-1} = A = (A^T)^T = (A^{-1})^T$
+    \end{solution}
+    
+    % \newpage
+    
+    \begin{problem}{8}
+        What are eigenvalues and eigenvectors of a diagonal matrix ?
+    \end{problem}
+    
+    \begin{solution}
+        The eigenvalues of a diagonal matrix are present as the elements of that diagonal matrix. And its eigenvector form a canonical basis for space $K^n$ 
+    \end{solution}
+    
+    % \newpage
+    
+    \begin{problem}{9}
+        Can you find vectors that attain each of the equality cases in $\lambda_{min} \leq \frac{x^{T}Ax}{||x||^{2}} \leq \lambda_{max}$ ?
+    \end{problem}
+    
+    \begin{solution}
+        The given inequality is known as Rayleigh Inequality. Here, $A$ is any symmetric matrix of order $n$ and $x$ is any vector of $\mathbb{R}^{n}$.
+        
+        \hfill
+        
+        One vector for which equality can be attain in both the cases is when $x = \begin{bmatrix}
+            1 & 0 & 0
+        \end{bmatrix}$ and A is an identity matrix of order 3.
+        
+        \hfill
+        
+        Then $\lambda_{min}$ and $\lambda_{max}$ both are 1 and $||x||^2 = 1.1 + 0.0 + 0.0 = 1$ and $x^TAx = 1$.
+        
+        \hfill
+        
+        There are many other vectors as well. Any column vector of an identity matrix will also satisfy this property.
+        
+        
+    \end{solution}
+    
+
+
+\end{document}

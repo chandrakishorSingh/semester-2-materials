@@ -1,0 +1,12 @@
+price,maintenance,capacity,airbag,profit
+low,low,2,no,yes
+low,average,5,yes,no
+low,low,5,no,yes
+low,high,5,no,no
+average,average,5,no,no
+average,average,5,yes,yes
+average,high,2,yes,no
+average,high,7,no,yes
+high,average,5,yes,yes
+high,high,2,yes,no
+high,high,7,yes,yes

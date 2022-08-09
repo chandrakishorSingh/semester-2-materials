@@ -1,0 +1,139 @@
+
+
+\documentclass{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts, fancyhdr, color, comment, graphicx, environ}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\renewcommand{\footrulewidth}{0.8pt}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+
+\pagestyle{fancy}
+
+
+
+\newenvironment{problem}[2][Problem]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+
+\newenvironment{solution}{\textbf{Solution}}
+
+
+\lhead{MIT2021117}
+\rhead{} 
+\chead{\textbf{Assignment 2}}
+\lfoot{}
+\rfoot{}
+
+
+\begin{document}
+    \begin{problem}{1}
+        If $A = U \Sigma V^{T}$ is the SVD of a square invertible matrix $A$, what is the SVD of $A^{-1}$ ?
+    \end{problem}
+    
+    \begin{solution}
+        The SVD of a $m x n$ matrix $A$ is given by $A = U W V^{T}$ where,
+        
+        $U$: $m$ x $n$ orthonormal eigenvectors of $AA^{T}$
+        
+        $V^{T}$: $n$ x $n$ orthonormal eigenvectors of $A^{T}A$
+        
+        $W$: $n$ x $n$ diagonal matrix having diagonal elements as the square roots of the eigenvalues of $A^{T}A$.
+        
+        \hfill
+        
+        Since, $U$ \& $V$ are orthogonal, $U^{T} = U^{-1}$ and $V^{T} = V^{-1}$
+        
+        \hfill
+        
+        A diagonal matrix $D$ with non-zero entries will have an inverse as 
+        \[
+            D^{-1} = 
+            \begin{bmatrix}
+                1/d_{1} & 0 & 0 & \dots & 0 \\
+                0 & 1/d_{2} & 0 & \dots & 0 \\
+                \vdots & \vdots & \vdots & \ddots & \vdots \\
+                0 & 0 & 0 & \dots & 1/d_{n} \\
+            \end{bmatrix}
+        \]
+        
+        where $d_{1}, d_{1}, \dots, d_{n}$ are elements of $D$. Hence, the diagonal matrix $W$ can also be inverted in the same way.
+        
+        \hfill
+        
+        Hence, $A^{-1} = (UWV^{T})^{-1} = (V^{T})^{-1} W^{-1} U^{-1} = VW^{-1}U^{T}$.
+    
+        
+    \end{solution}
+    
+    \begin{problem}{2}
+        If $A = U \Sigma V^{T}$ is the SVD of a square invertible matrix $A$, what is the SVD of $A^{-1}$ ?
+    \end{problem}
+    
+    \begin{solution}
+    The Eigendecomposition of a matrix is as follows.
+    
+    \hfill
+    
+    The matrix U is formed by placing the eigenvector of A as its column. The $\Lambda$ is a diagonal matrix where diagonal elements are eigenvalues.
+    
+    \hfill
+
+    So, $AU = U \Lambda$. Hence, $A = U \Lambda U^{-1}$
+    
+    \hfill
+    
+    In positive semi-definite matrix, the eigenvalues are greater than or equal to zero. Also, any two eigenvector are orthogonal.
+    
+    \hfill
+    
+    Hence, U is a orthogonal matrix and if we normalize its eigenvetor then it becomes orthonormal.
+    
+    \hfill
+    
+    So, we can write $A = U \Lambda U^{-1}$.
+    
+    \hfill
+    
+    The eigendecomposition of A satisfies all the requirement of having SVD.
+
+    \end{solution}
+    
+    \begin{problem}{3}
+        If A is not positive semidefinite, how can we modify signs in A = $U \Lambda U^T$
+    \end{problem}
+    
+    \begin{solution}
+        If A is not positive semi-definite then there there exists  eigenvalues which are not positive. In such case, we can take absolute value of eigen vectors to form the diagonal matrix $\Lambda$.
+    \end{solution}
+    
+    \begin{problem}{4}
+        Show that for a square A = $USU^T$ one has $AA^T$ = $US^2U^T$
+and $A^TA$ =$V^TS^2V$ , and that these are eigen decompositions.
+    \end{problem}
+    
+    \begin{solution}
+        Given, A = USU\textsuperscript{T}\newline
+	\hspace*{21mm}So,\hspace*{5mm} A\textsuperscript{T} = (USU\textsuperscript{T})\textsuperscript{T}\newline
+	    \hspace*{23mm}$\implies$ A\textsuperscript{T} = (U\textsuperscript{T})\textsuperscript{T}S\textsuperscript{T}U\textsuperscript{T}\newline
+	    \hspace*{23mm}$\implies$ A\textsuperscript{T} = US\textsuperscript{T}U\textsuperscript{T}\newline\newline\newline
+	   So,\hspace*{5mm} A\textsuperscript{T}A = USU\textsuperscript{T}US\textsuperscript{T}U\textsuperscript{T}\newline
+	   \hspace*{2mm}$\implies$ A\textsuperscript{T}A = USS\textsuperscript{T}U\textsuperscript{T}\newline
+	   	   \hspace*{2mm}$\implies$ A\textsuperscript{T}A = US\textsuperscript{2}U\textsuperscript{T}\newline\newline
+	    So,\hspace*{5mm} AA\textsuperscript{T} = USU\textsuperscript{T}US\textsuperscript{T}U\textsuperscript{T}\newline
+	   \hspace*{2mm}$\implies$ AA\textsuperscript{T} = USS\textsuperscript{T}U\textsuperscript{T}\newline
+	   	   \hspace*{2mm}$\implies$ AA\textsuperscript{T} = US\textsuperscript{2}U\textsuperscript{T}\newline\newlne
+    \end{solution}
+
+
+\end{document}

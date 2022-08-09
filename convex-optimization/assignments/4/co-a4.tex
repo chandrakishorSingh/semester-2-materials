@@ -1,0 +1,208 @@
+
+
+\documentclass{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts, fancyhdr, color, comment, graphicx, environ}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\renewcommand{\footrulewidth}{0.8pt}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+
+\pagestyle{fancy}
+
+
+
+\newenvironment{problem}[2][Problem]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+
+\newenvironment{solution}{\textbf{Solution}}
+
+
+\lhead{MIT2021117}
+\rhead{Convex Optimizations}
+\chead{\textbf{Assignment 4}}
+\lfoot{}
+\rfoot{}
+
+
+\begin{document}
+
+    \begin{problem}{1}
+    Is the intersection of two convex sets convex ? Is the union of two convex sets convex ?
+    \end{problem}
+    
+    \begin{solution}
+    
+    \underline{1. Intersection of two convex sets}
+    
+    \hfill
+    
+    Let $A$ and $B$ be two convex sets.
+    
+    \hfill
+    
+    Let $x, y \in A \cap B$
+    
+    $\implies x, y \in A$ and $x, y \in B$
+    
+    $\implies x\lambda + (1 - \lambda)y \in A, \forall \: \lambda \in [0, 1]$ and $x\lambda + (1 - \lambda)y \in B, \forall \: \lambda \in [0, 1]$ \hfill \dots(Since A, B are convex sets)
+    
+    $\implies x\lambda + (1 - \lambda)y \in A \cap B, \forall \: \lambda \in [0, 1] $
+    
+    \hfill
+    
+    Hence, $A \cap B$ is a convex set. Therefore, intersection of any two convex sets is also a convex set.
+    
+    \hfill
+    
+    \underline{2. Union of two convex sets}
+    
+    \hfill
+    
+    We can prove that union of two convex sets is not convex using counter example.
+    
+    \hfill
+    
+    We already know that $[4, 5]$ and $[6, 7]$ are convex set.
+    
+    But, $5*t + (1 - t)*6$ does not belong to $[4, 5] \cup [6, 7]$ for any $t \in [0, 1]$.
+    
+    \hfill
+    
+    Hence, union of two convex sets may not be convex.
+    
+    \end{solution}
+    
+    \begin{problem}{2}
+        Prove that the following sets are convex.
+        
+        (a) \textbf{Polyhedra}: Sets of the form $K$ = \{ $x \in \mathbb{R}_{n}: \langle a_{i}, x \rangle \leq b_{i} \: for \: i = 1, 2, ..., m $ \} where $a_{i} \in \mathbb{R}_{n}$ and $b_{i} \in \mathbb{R}$ for $i = 1, 2, ..., m$
+        
+        (b) \textbf{Ellipsoids}: Sets of the form $K$ = \{ $x \in \mathbb{R}^{n}: x^TAx \leq 1 $ \} where $A \in \mathbb{R}^{n x n}$ is a PD matrix.
+        
+        (c) \textbf{Unit balls in $l_{p}$ norms for $p \geq 1$}: $B_{p}(a, 1) := $ \{ $x \in \mathbb{R}^{n}: \: \parallel x - a \parallel_{p} \leq 1 $ \} where $a \in \mathbb{R}^n$ is a vector.
+    \end{problem}
+    
+    \begin{solution}
+        \hfill
+        
+        (a) Let $x, y \in K$.
+        
+        \hfill
+        
+        Hence, $\langle a_{i}, x \rangle \leq b_{i} \implies \lambda \langle a_{i}, x \rangle \leq \lambda b_{i} \: \forall \: i = 1, 2, ..., m$ and $\lambda \in [0, 1]$
+        
+        Similarly, $\langle a_{i}, y \rangle \leq b_{i} \implies (1 - \lambda) \langle a_{i}, y \rangle \leq (1 - \lambda) b_{i} \: \forall \: i = 1, 2, ..., m$ and $\lambda \in [0, 1]$
+        
+        \hfill
+        
+        Adding above two inequalities, we get,
+        
+        \hfill
+        
+        $\lambda \langle a_{i}, x \rangle + (1 - \lambda) \langle a_{i}, y \rangle \leq \lambda b_{i} + (1 - \lambda)b_{i}  \: \forall \: i = 1, 2, ..., m$ and $\lambda \in [0, 1]$
+        
+        $\implies \lambda * a_{i}.x  + (1 - \lambda) a_{i}. x  \leq b_{i}  \: \forall \: i = 1, 2, ..., m$ and $\lambda \in [0, 1]$
+        
+        $\implies a_{i}(\lambda x + (1 - \lambda)y) \leq b_{i} \: \forall \: i = 1, 2, ..., m$ and $\lambda \in [0, 1]$
+        
+        $\implies \langle a_{i}, \lambda x + (1 - \lambda y)  \rangle \leq b_{i} \forall \: i = 1, 2, ..., m$ and $\lambda \in [0, 1]$
+        
+        \hfill
+        
+        Hence, $x, y \in K \implies \lambda x + (1 - \lambda y) \in K $. Hence, the polyhedra set is a convex set.
+        
+        \hfill
+        
+        (b) Since, $A \in \mathbb{R}^{n x n}$ hence, A will be a positive definite matrix. Hence, $A = (A^{1/2})^{2}$ for a uniquely defined symmetrix positive definite matrix $A^{1/2}$.
+        
+        \hfill
+        
+        Setting, $\parallel x \parallel_{A} = \parallel A^{1/2}_{x} \parallel_{2}$. Hence, we have a norm on $R^{n}$. Then, we get,
+        
+        \hfill
+        
+        $x^TAx = [(x^T)A^{1/2}][A^{1/2}x] = \parallel A^{1/2} x \parallel^{2}_{2} = \parallel x \parallel^{2}_{Q}$.
+        
+        \hfill
+        
+        We can redfine $K$ as $K = \{ x \in \mathbb{R}^n: \parallel x \parallel^{2}_{A} \leq 1 \}$ where $A \in \mathbb{R}^{n x n}$ is a postive definite matrix.
+        
+        \hfill
+        
+        Let $m, n \in K$.
+        
+        \hfill
+        
+        $\parallel \lambda m + (1 - \lambda)n \parallel^{2}_{A} \: \leq \: \parallel \lambda m \parallel^{2}_{A} + \parallel (1 - \lambda)n \parallel^{2}_{A}$
+        
+        \hfill
+        
+        $\leq \lambda \parallel m \parallel^{2}_{A} + (1 - \lambda)\parallel n \parallel^{2}_{A}$
+        
+        \hfill
+        
+        $\leq \lambda . 1  + (1 - \lambda) . 1$
+        
+        \hfill
+        
+        $\leq 1$
+        
+        \hfill
+        
+        Hence, $\lambda m + (1 - \lambda)n \in K$, so K is a convex set.
+        
+        \hfill
+        
+        
+    \end{solution}
+    
+    (c) For the $l_{p}$ norm we know that, 
+    
+    \hfill
+    
+    $\parallel f + g \parallel_{p} \: \leq \: \parallel f \parallel_{p} + \parallel g \parallel_{p} $
+    
+    $\lambda \parallel f \parallel_{p} = \parallel \lambda f \parallel_{p}$
+    
+    \hfill
+    
+    Let $x, y \in B_{p}(a, 1)$, So
+    
+    $\parallel x - a \parallel_{p} \leq 1$
+    
+    $\parallel y - a \parallel_{p} \leq 1$
+    
+    \hfill
+    
+    We can combine above 2 equations with $\lambda \in [0, 1]$
+    
+    $\lambda \parallel x - a \parallel_{p} + (1 - \lambda) \parallel y - a \parallel_{p} \leq \lambda + (1 - \lambda)$
+    
+    $\implies \parallel \lambda(x - a) \parallel_{p} + \parallel (1 - \lambda) (y - a) \parallel \leq 1$ \hfill(Property of $l_{p}$ norm)
+    
+    $\implies \parallel \lambda(x - a)  + (1 - \lambda) (y - a) \parallel \leq 1$ \hfill(Property of $l_{p}$ norm)
+    
+    $\implies \parallel \lambda x  + (1 - \lambda) y - a \parallel \leq 1$ 
+    
+    \hfill
+    
+    Hence, $\lambda x + (1 - \lambda)y \in B_{p}(a, 1)$
+    
+    Hence, $B_{p}(a, 1)$ is a convex set.
+    
+    
+
+
+\end{document}
